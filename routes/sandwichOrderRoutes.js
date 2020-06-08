@@ -59,4 +59,18 @@ router.route("/update/:id").put((req, res) => {
     .catch(err => res.status(400).json("Error: ", err))
 })
 
+const calculateOrderAmount = items => {
+    return 1400;
+};
+router.route("/create-payment-intent").post(async (req, res) => {
+    const { items } = req.body;
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: calculateOrderAmount(items),
+        currency: "usd"
+    });
+    res.send({
+        clientSecret: paymentIntent.client_secret
+    });
+});
+
 module.exports = router
