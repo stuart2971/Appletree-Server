@@ -29,21 +29,6 @@ app.use((req, res, next) => {
     next();
 });
 
-const calculateOrderAmount = items => {
-    return 1400;
-};
-app.post("/create-payment-intent", async (req, res) => {
-    const { items } = req.body;
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: calculateOrderAmount(items),
-      currency: "usd"
-    });
-    res.send({
-      clientSecret: paymentIntent.client_secret
-    });
-});
-
 mongoose.connect(process.env.MONGO_CONNECTION, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true})
 const db = mongoose.connection;
 

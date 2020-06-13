@@ -9,10 +9,17 @@ router.route("/show").get((req, res) => {
         .then(orders => res.json(orders))
         .catch(err => res.status(400).json("Error: ", err))
 })
-
 //Add an order
 router.route("/add").post(async (req, res) => { 
-    console.log("showing sandwiches")
+    const { items } = req.body;
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1000,
+      currency: "usd"
+    });
+    res.send({
+      clientSecret: paymentIntent.client_secret
+    });
+    
     let newOrder = new Sandwich({
         name: req.body.name,
         price: req.body.price,
