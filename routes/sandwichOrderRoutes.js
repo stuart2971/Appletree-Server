@@ -1,8 +1,6 @@
 const router = require("express").Router()
 const Sandwich = require("../models/Sandwich.model")
 
-const { resolve } = require("path");
-const stripe = require("stripe")("sk_test_V9Z4esZ11zDmYD5PUfIH8riz");
 
 //Show all Orders
 router.route("/show").get((req, res) => {

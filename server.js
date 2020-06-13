@@ -10,9 +10,8 @@ require("dotenv").config();
 
 const app = express();
 
-const stripe = require("stripe")("sk_test_V9Z4esZ11zDmYD5PUfIH8riz");
+const stripe = require("stripe")(process.env.SECRET_KEY);
 const { resolve } = require("path");
-
 
 app.use(cors());
 app.use(express.static("."));
