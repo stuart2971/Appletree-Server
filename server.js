@@ -15,8 +15,20 @@ const { resolve } = require("path");
 
 
 app.use(cors());
+app.use(express.static("."));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.post("/payment", async (req, res) => {
+    const { items } = req.body;
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1000,
+      currency: "usd"
+    });
+    res.send({
+      clientSecret: paymentIntent.client_secret
+    });
+});
 
 app.use("/sandwich", sandwichRouter)
 app.use("/fries", FriesRouter)

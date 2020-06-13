@@ -12,15 +12,6 @@ router.route("/show").get((req, res) => {
 })
 //Add an order
 router.route("/add").post(async (req, res) => { 
-    const { items } = req.body;
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: 139,
-        currency: "usd"
-    });
-    res.send({
-        clientSecret: paymentIntent.client_secret
-    });
-
     let newOrder = new Sandwich({
         name: req.body.name,
         price: req.body.price,
