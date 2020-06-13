@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/payment", async (req, res) => {
-    const { items } = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
       amount: req.body.price,
       currency: "usd"
