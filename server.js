@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.post("/payment", async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: req.body.price,
-      currency: "usd"
+      currency: "cad"
     });
     res.send({
       clientSecret: paymentIntent.client_secret
