@@ -27,9 +27,7 @@ app.post("/payment", async (req, res) => {
       clientSecret: paymentIntent.client_secret
     });
 });
-app.get("/.well-known/apple-developer-merchantid-domain-association", (req, res) => {
-    res.sendFile("./certificates/apple-developer-merchantid-domain-association.txt")
-})
+app.use("/.well-known/apple-developer-merchantid-domain-association", express.static(__dirname + "/certificates/apple-developer-merchantid-domain-association"))
 
 app.use("/sandwich", sandwichRouter)
 app.use("/fries", FriesRouter)
