@@ -27,7 +27,10 @@ app.post("/payment", async (req, res) => {
       clientSecret: paymentIntent.client_secret
     });
 });
-app.use("/.well-known/apple-developer-merchantid-domain-association", express.static(__dirname + "/certificates/apple-developer-merchantid-domain-association"))
+
+//Apple pay costs $119 annually.  When verifying domain with apple, you need a developer account which costs money.  
+//Only implement if website makes a lot of $$$
+// app.use("/.well-known/apple-developer-merchantid-domain-association", express.static(__dirname + "/certificates/apple-developer-merchantid-domain-association"))
 
 app.use("/sandwich", sandwichRouter)
 app.use("/fries", FriesRouter)
