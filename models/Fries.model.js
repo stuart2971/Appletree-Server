@@ -25,6 +25,10 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    mayoType: {
+        type: String,
+        required: true
+    },
     phoneNumber: {
         type: String,
         required: true

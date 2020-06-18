@@ -16,6 +16,7 @@ router.route("/add").post((req, res) => {
         address: req.body.address,
         friesType: req.body.friesType,
         spice: req.body.spice,
+        mayoType:req.body.mayoType,
         phoneNumber: req.body.phoneNumber,
         date: req.body.date,
         imageProfileNumber: Math.floor(Math.random() * 14),
