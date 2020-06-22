@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const Sandwich = require("../models/Sandwich.model")
 
+const { sendMail } = require("./SendMail")
 
 //Show all Orders
 router.route("/show").get((req, res) => {
@@ -10,24 +11,39 @@ router.route("/show").get((req, res) => {
 })
 //Add an order
 router.route("/add").post(async (req, res) => { 
+    let sandwich = req.body;
     let newOrder = new Sandwich({
-        name: req.body.name,
-        price: req.body.price,
-        address: req.body.address,
-        sandwichType: req.body.sandwichType,
-        toppings: req.body.toppings,
-        spice: req.body.spice,
-        cheeseType: req.body.cheeseType,
-        phoneNumber: req.body.phoneNumber,
-        date: req.body.date,
+        name: sandwich.name,
+        email: sandwich.email,
+        price: sandwich.price,
+        address: sandwich.address,
+        sandwichType: sandwich.sandwichType,
+        toppings: sandwich.toppings,
+        spice: sandwich.spice,
+        cheeseType: sandwich.cheeseType,
+        phoneNumber: sandwich.phoneNumber,
+        date: sandwich.date,
         imageProfileNumber: Math.floor(Math.random() * 14),
-        takeout: req.body.takeout
+        takeout: sandwich.takeout
     })
 
     newOrder.save()
-        .then(() => res.json("Order added")) 
+        .then(() => {
+            // if(sandwich.email)
+                sendMail(sandwich.email, "Hello")
+        }) 
         .catch(err => res.status(400).json({err}))
 })
+
+// {
+//     sandwichType: sandwich.sandwichType, 
+//     cheeseType: sandwich.cheeseType,
+//     spice: sandwich.spice,
+//     toppings: sandwich.toppings,
+//     address: sandwich.address,
+//     phoneNumber: sandwich.phoneNumber,
+//     price: sandwich.price
+// }
 
 //Remove an order
 router.route("/remove/:id").delete((req, res) => {

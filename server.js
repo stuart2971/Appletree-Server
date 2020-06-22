@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const Pusher = require("pusher");
 
-const sandwichRouter = require("./routes/sandwichOrderRoutes")
+const SandwichRouter = require("./routes/SandwichOrderRoutes")
 const FriesRouter = require("./routes/FriesOrderRoutes")
 
 require("dotenv").config();
@@ -11,7 +11,6 @@ require("dotenv").config();
 const app = express();
 
 const stripe = require("stripe")(process.env.SECRET_KEY);
-const { resolve } = require("path");
 
 app.use(cors());
 app.use(express.static("."));
@@ -32,7 +31,7 @@ app.post("/payment", async (req, res) => {
 //Only implement if website makes a lot of $$$
 // app.use("/.well-known/apple-developer-merchantid-domain-association", express.static(__dirname + "/certificates/apple-developer-merchantid-domain-association"))
 
-app.use("/sandwich", sandwichRouter)
+app.use("/sandwich", SandwichRouter)
 app.use("/fries", FriesRouter)
 
 

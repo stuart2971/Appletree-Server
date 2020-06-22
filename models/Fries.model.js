@@ -45,6 +45,10 @@ const orderSchema = mongoose.Schema({
         type:Boolean,
         default: false
     },
+    email: {
+        type: String,
+        required: false
+    }
 })
 
 

@@ -44,6 +44,10 @@ const orderSchema = mongoose.Schema({
     takeout: {
         type: Boolean, 
         required: true
+    },
+    email: {
+        type: String,
+        required: false
     }
 })
  
