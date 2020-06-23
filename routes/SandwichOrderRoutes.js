@@ -29,7 +29,8 @@ router.route("/add").post(async (req, res) => {
 
     newOrder.save()
         .then(() => {
-            // if(sandwich.email)
+            res.json("Order added")
+            if(sandwich.email)
                 sendMail(sandwich.email, "Hello")
         }) 
         .catch(err => res.status(400).json({err}))
