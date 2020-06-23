@@ -1,7 +1,11 @@
 const router = require("express").Router()
 const Sandwich = require("../models/Sandwich.model")
-
-const { sendMail } = require("./SendMail")
+const send = require("gmail-send")({
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS,
+    to: "appletreegs@gmail.com",
+    subject: "New Order"
+})
 
 //Show all Orders
 router.route("/show").get((req, res) => {
@@ -30,8 +34,11 @@ router.route("/add").post(async (req, res) => {
     newOrder.save()
         .then(() => {
             res.json("Order added")
-            if(sandwich.email)
-                sendMail(sandwich.email, "Hello")
+            send({
+                text: "New order blah blah blah"
+            }, (err, res, fullRes) => {
+                console.log(err, res, fullRes)
+            })
         }) 
         .catch(err => res.status(400).json({err}))
 })

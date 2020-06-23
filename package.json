@@ -13,8 +13,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "gmail-send": "^1.8.10",
     "mongoose": "^5.9.12",
-    "nodemailer": "^6.4.10",
     "pusher": "^3.0.1",
     "stripe": "^8.54.0"
   }
