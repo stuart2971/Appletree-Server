@@ -16,6 +16,8 @@ app.use(cors());
 app.use(express.static("."));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.get('/favicon.ico', (req, res) => res.status(204));
+app.get("/", (req, res) => res.status(200))
 
 app.post("/payment", async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
