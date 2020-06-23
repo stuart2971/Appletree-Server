@@ -7,7 +7,7 @@ async function sendMail(to, message){
       
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-          host: "smtp.ethereal.email",
+          host: "gmail",
           port: 587,
           secure: false, // true for 465, false for other ports
           auth: {
